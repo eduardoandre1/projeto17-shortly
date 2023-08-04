@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import DB from "../database/postgresSQL.js";
 async function Sign_up(req,res){
-    const {name , email , password , confirmPassword} = req.body
+    const {name , email , password } = req.body
     const crypt_password = bcrypt.hashSync(password,10)
     try{
         

@@ -4,8 +4,9 @@ import alredy_have_pg from '../../middlewares/already_have.js'
 import schema_sign_up from '../../schemas/schema_sign_up.js'
 import schema_sign_in from '../../schemas/schema_sign_in.js'
 import Sign_up from '../../controllers/sign_up.js'
+import sign_in from '../../controllers/sign_in.js'
 const login = Router()
 login.post("/signup",input_validate(schema_sign_up),alredy_have_pg('Users','email','email'),Sign_up)
-login.post("/signin",input_validate(schema_sign_in),)
+login.post("/signin",input_validate(schema_sign_in),sign_in)
 
 export default login
