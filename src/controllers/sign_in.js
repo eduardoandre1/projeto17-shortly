@@ -17,7 +17,7 @@ async function sign_in(req,res){
         }
         const token = uuid()
         const date = new Date()
-        await DB.query(`INSERT INTO tokens (user_id,token,date) VALUES ($1,$2,$3)`,[user.rows[0].id,token,date])
+        await DB.query(`INSERT INTO tokens (user_id,token,"createdAt") VALUES ($1,$2,$3)`,[user.rows[0].id,token,date])
         return res.status(200).send({token:token})
 
     }catch(erro){return res.status(500).send(erro.message)}
