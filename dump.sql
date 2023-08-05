@@ -61,7 +61,7 @@ CREATE TABLE public.tokens (
     user_id integer NOT NULL,
     id integer NOT NULL,
     token text NOT NULL,
-    "createdAt" date NOT NULL
+    "createdAt" timestamp without time zone NOT NULL
 );
 
 
