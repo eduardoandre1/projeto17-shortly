@@ -2,7 +2,7 @@ import DB from "../database/postgresSQL.js"
 
 export default function this_exist_pg(tabela,coluna,item){
     return async(req,res,next)=>{
-        const input = Object.entries(req.body)
+        const input = Object.entries(req.params)
         const value = input.find((Element)=> Element[0]==item)
         const select = `SELECT * FROM "${tabela}" WHERE "${coluna}" = $1`
         try{

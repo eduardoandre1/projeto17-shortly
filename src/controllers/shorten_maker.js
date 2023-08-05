@@ -11,5 +11,5 @@ export default async function shorten(req,res){
         const id = get_token.rows[0].id
         await DB.query(`INSERT INTO urls (id_user,original_url,shorter_url,"createdAt") VALUES ($1,$2,$3,$4)`,[id,url,shortUrl,date])
         return res.status(201).send({id:id,shortUrl:shortUrl}) 
-    }catch(erro){return res.status(500).send(erro.message)}
+    }catch(err){return res.status(500).send(err.message)}
 }
