@@ -6,8 +6,8 @@ export default async function tokenvalidade(req,res,next){
         try{
             const finder = await DB.query(select,[token])
             if(finder.rowCount === 0){
-            return res.sendStatus(401)
+            return res.sendStatus(401)}
         }
-        }catch(err){return res.status(500).send(err.message)}
+        catch(err){return res.status(500).send(err.message)}
     next()
 }

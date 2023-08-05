@@ -28,7 +28,8 @@ CREATE TABLE public."Users" (
     id integer NOT NULL,
     email text NOT NULL,
     password text NOT NULL,
-    name text NOT NULL
+    name text NOT NULL,
+    "createdAt" timestamp without time zone
 );
 
 
@@ -60,7 +61,7 @@ CREATE TABLE public.tokens (
     user_id integer NOT NULL,
     id integer NOT NULL,
     token text NOT NULL,
-    date date NOT NULL
+    "createdAt" date NOT NULL
 );
 
 
@@ -85,23 +86,23 @@ ALTER SEQUENCE public.tokens_id_seq OWNED BY public.tokens.id;
 
 
 --
--- Name: url; Type: TABLE; Schema: public; Owner: -
+-- Name: urls; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.url (
-    name text NOT NULL,
-    original_url text NOT NULL,
-    shorter_url text,
+CREATE TABLE public.urls (
     id integer NOT NULL,
-    id_users integer NOT NULL
+    "createdAt" timestamp without time zone NOT NULL,
+    id_user character varying(255) NOT NULL,
+    original_url text NOT NULL,
+    shorter_url text NOT NULL
 );
 
 
 --
--- Name: url_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: urls_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.url_id_seq
+CREATE SEQUENCE public.urls_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -111,10 +112,10 @@ CREATE SEQUENCE public.url_id_seq
 
 
 --
--- Name: url_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: urls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.url_id_seq OWNED BY public.url.id;
+ALTER SEQUENCE public.urls_id_seq OWNED BY public.urls.id;
 
 
 --
@@ -132,17 +133,17 @@ ALTER TABLE ONLY public.tokens ALTER COLUMN id SET DEFAULT nextval('public.token
 
 
 --
--- Name: url id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: urls id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.url ALTER COLUMN id SET DEFAULT nextval('public.url_id_seq'::regclass);
+ALTER TABLE ONLY public.urls ALTER COLUMN id SET DEFAULT nextval('public.urls_id_seq'::regclass);
 
 
 --
 -- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public."Users" VALUES (1, 'ewd@gmail.com', '$2b$10$rJQx5U8jjxOckI2gKDP8xeF18eSNSg50x5H0mQ8xWTKgUdhJ0KoZe', 'edu');
+INSERT INTO public."Users" VALUES (1, 'ewd@gmail.com', '$2b$10$rJQx5U8jjxOckI2gKDP8xeF18eSNSg50x5H0mQ8xWTKgUdhJ0KoZe', 'edu', NULL);
 
 
 --
@@ -161,12 +162,23 @@ INSERT INTO public.tokens VALUES (1, 10, '1d1f3826-d08c-4991-9256-54ed3a04f99d',
 INSERT INTO public.tokens VALUES (1, 11, '2185949d-2d05-4959-a063-a12c242e93ba', '2023-08-03');
 INSERT INTO public.tokens VALUES (1, 12, 'ae804cbe-97cf-4eff-bde2-ad29d27a9022', '2023-08-03');
 INSERT INTO public.tokens VALUES (1, 13, '8e7472d6-f5cf-409b-a7cf-777cecdaaea7', '2023-08-03');
+INSERT INTO public.tokens VALUES (1, 14, 'c6e7a866-f359-4bca-834b-d98bcc3ac918', '2023-08-05');
+INSERT INTO public.tokens VALUES (1, 15, '2356286d-5994-454b-8f93-349bf9eecddc', '2023-08-05');
 
 
 --
--- Data for Name: url; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: urls; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.urls VALUES (1, '2023-08-05 12:37:08.113', '15', 'hjsaldui', '7o_5xhY-jz');
+INSERT INTO public.urls VALUES (3, '2023-08-05 12:37:21.419', '15', 'hjsaldui2', 'hH0iFfg-9C');
+INSERT INTO public.urls VALUES (4, '2023-08-05 12:37:28.488', '15', 'hjsaldui2cx', 'TNc43E4Ipj');
+INSERT INTO public.urls VALUES (5, '2023-08-05 12:37:31.522', '15', 'hjsaldui2cxsdf', 'rb3p851WO3');
+INSERT INTO public.urls VALUES (7, '2023-08-05 12:51:51.583', '15', 'hjsaldui2cxsdg', 's_twScjpIi');
+INSERT INTO public.urls VALUES (8, '2023-08-05 13:02:26.805', '15', 'https://www.google.com/search?channel=fs&client=ubuntu&q=pegar+valores+do+headers+node', '4vJY4KEdds');
+INSERT INTO public.urls VALUES (9, '2023-08-05 13:02:43.473', '15', 'https://www.google.com/', 'xqVk651IK7');
+INSERT INTO public.urls VALUES (12, '2023-08-05 13:08:37.797', '15', 'https://www.google2.com/', 'NiujGvuCcC');
+INSERT INTO public.urls VALUES (15, '2023-08-05 13:10:20.954', '15', 'https://www.google3.com/', 'YjxDN1kGKa');
 
 
 --
@@ -180,14 +192,14 @@ SELECT pg_catalog.setval('public."Users_id_seq"', 2, true);
 -- Name: tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.tokens_id_seq', 13, true);
+SELECT pg_catalog.setval('public.tokens_id_seq', 15, true);
 
 
 --
--- Name: url_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: urls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.url_id_seq', 1, false);
+SELECT pg_catalog.setval('public.urls_id_seq', 15, true);
 
 
 --
@@ -215,11 +227,27 @@ ALTER TABLE ONLY public.tokens
 
 
 --
--- Name: url url_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: urls urls_original_url_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.url
-    ADD CONSTRAINT url_pkey PRIMARY KEY (id_users);
+ALTER TABLE ONLY public.urls
+    ADD CONSTRAINT urls_original_url_key UNIQUE (original_url);
+
+
+--
+-- Name: urls urls_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.urls
+    ADD CONSTRAINT urls_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: urls urls_shorter_url_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.urls
+    ADD CONSTRAINT urls_shorter_url_key UNIQUE (shorter_url);
 
 
 --
