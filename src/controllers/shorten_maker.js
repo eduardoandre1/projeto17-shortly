@@ -9,7 +9,7 @@ export default async function shorten(req,res){
         const get_token = await DB.query(`SELECT * FROM "tokens" WHERE token = $1`,[token.replace('Bearer',"").trim()])
         const date = new Date
         const id = get_token.rows[0].id
-        await DB.query(`INSERT INTO urls (id_user,original_url,shorter_url,"createdAt") VALUES ($1,$2,$3,$4)`,[id,url,shortUrl,date])
+        await DB.query(`INSERT INTO urls (user_id,original_url,shorter_url,"createdAt") VALUES ($1,$2,$3,$4)`,[id,url,shortUrl,date])
         return res.status(201).send({id:id,shortUrl:shortUrl}) 
     }catch(err){return res.status(500).send(err.message)}
 }
