@@ -92,7 +92,7 @@ ALTER SEQUENCE public.tokens_id_seq OWNED BY public.tokens.id;
 CREATE TABLE public.urls (
     id integer NOT NULL,
     "createdAt" timestamp without time zone NOT NULL,
-    id_user character varying(255) NOT NULL,
+    user_id character varying(255) NOT NULL,
     original_url text NOT NULL,
     shorter_url text NOT NULL,
     viens integer DEFAULT 0 NOT NULL

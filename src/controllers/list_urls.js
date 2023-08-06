@@ -7,5 +7,5 @@ export default async function list_urls(req,res){
             return res.sendStatus(404)
         }
         return res.status(200).send(finder.rows[0])
-    }catch(err){return res.status(500).send(erro.message)}
+    }catch(err){return res.status(500).send(err.message)}
 }
