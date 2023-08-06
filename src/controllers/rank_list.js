@@ -5,6 +5,7 @@ export default async function rank(req,res){
         SELECT "Users".name, SUM(urls.viens) as "visitCount",COUNT(urls.user_id) as "linksCount","Users".id as id
           FROM "Users" JOIN urls ON "Users".id = urls.user_id 
           GROUP BY "Users".name,"Users".id
+          ORDER BY SUM(urls.viens) DESC
           LIMIT  10`)
         console.log(rank.rows)
         return res.status(200).send(rank.rows)
