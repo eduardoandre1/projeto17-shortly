@@ -6,7 +6,7 @@ export default async function shorten(req,res){
     const {url} = req.body
     try{
         const shortUrl = nanoid(10)
-        const get_token = await DB.query(`SELECT * FROM "tokens" WHERE token = $1`,[token])
+        const get_token = await DB.query(`SELECT * FROM "tokens" WHERE token = $1`,[token.replace('Bearer',"").trim()])
         const date = new Date
         const id = get_token.rows[0].id
         await DB.query(`INSERT INTO urls (id_user,original_url,shorter_url,"createdAt") VALUES ($1,$2,$3,$4)`,[id,url,shortUrl,date])
