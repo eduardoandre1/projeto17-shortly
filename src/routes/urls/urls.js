@@ -9,7 +9,7 @@ import deleter from "../../controllers/deleter_route.js";
 
 const urls = Router()
 urls.post('/urls/shorten',input_validate(schema_url),tokenvalidade,shorten)
-urls.get("/url/:id",list_urls)
+urls.get("/urls/:id",list_urls)
 urls.get("/urls/open/:shortUrl",redirect_url)
 urls.delete("/urls/:id",tokenvalidade,deleter)
 
