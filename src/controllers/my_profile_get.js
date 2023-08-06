@@ -17,7 +17,7 @@ export default async function my_profile(req,res){
             id:user_data.rows[0].userid,
             name:user_data.rows[0].name,
             visitCount: user_data.rows.reduce((total,valor)=>{return total =total + valor.visitCount},0),
-            shortenedUrls: user_data.rows.map((value)=>{return{id:value.id,shortUrl:value.shortUrl,visitCount:value.visitCount}})
+            shortenedUrls: user_data.rows.map((value)=>{return{id:value.id,shortUrl:value.shortUrl,visitCount:value.visitCount,url:value.url}})
         }
         const g =user_data.rows.reduce((total,valor)=>total + valor.visitCount)
         console.log(g)
