@@ -12,6 +12,7 @@ export default  async function deleter(req,res){
             return res.status(401).send("you aren't autorizated to delete this url")
         }
         await DB.query(`DELETE FROM urls WHERE urls.id = $1`,[id])
+        return res.sendStatus(204)
     }catch(err){return res.status(500).send(err.message)}
-    return res.sendStatus(204)
+    
 }
