@@ -94,7 +94,8 @@ CREATE TABLE public.urls (
     "createdAt" timestamp without time zone NOT NULL,
     id_user character varying(255) NOT NULL,
     original_url text NOT NULL,
-    shorter_url text NOT NULL
+    shorter_url text NOT NULL,
+    viens integer DEFAULT 0 NOT NULL
 );
 
 
