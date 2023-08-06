@@ -6,6 +6,6 @@ export default async function list_urls(req,res){
         if(finder.rowCount === 0){
             return res.sendStatus(401)
         }
-        return res.status(200).send(finder.rows)
+        return res.status(200).send(finder.rows[0])
     }catch(err){return res.status(500).send(erro.message)}
 }
