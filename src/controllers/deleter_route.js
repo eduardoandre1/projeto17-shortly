@@ -5,7 +5,7 @@ export default  async function deleter(req,res){
     try{
         const urls = await DB.query(`SELECT urls.user_id as user FROM urls WHERE urls.id = $1`,[id])
         if(urls.rowCount === 0){
-            return res.status(401).send("this urls dont exist")
+            return res.status(404).send("this urls dont exist")
         }
         const url_user = urls.rows[0].user
         if(url_user !== user_id){
