@@ -7,7 +7,6 @@ export default async function redirectUrl(req,res){
             return res.status(404).send('shorted url is invalid')
         }
         await DB.query(`UPDATE urls SET viens = viens + 1 WHERE shorter_url =$1`,[short_url])
-        console.log(url.rows[0])
         return res.redirect(url.rows[0].url)
     }catch(err){return res.status(500).send(err.message)}
 

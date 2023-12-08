@@ -7,7 +7,6 @@ export default async function rank(req,res){
           GROUP BY "Users".name,"Users".id
           ORDER BY SUM(urls.viens) DESC
           LIMIT  10`)
-        console.log(rank.rows)
         return res.status(200).send(rank.rows)
     }catch(err){return res.status(500).send(err.message)}
 }

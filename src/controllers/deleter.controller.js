@@ -1,7 +1,6 @@
 import DB from "../database/postgresSQL.js";
 export default  async function deleter(req,res){
     const {userId} = req.finder.rows[0]
-    console.log(req.finder.rows[0])
     const id = req.params.id
     try{
         const urls = await DB.query(`SELECT * FROM urls WHERE urls.id = $1`,[id])
