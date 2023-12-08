@@ -1,5 +1,5 @@
 import DB from "../database/postgresSQL.js";
-export default async function list_urls(req,res){
+export default async function listUrls(req,res){
     const id = req.params.id
     try{
         const finder = await DB.query(`SELECT urls.id as id,urls.shorter_url as "shortUrl",urls.original_url as url FROM urls WHERE urls.id = $1`,[id])

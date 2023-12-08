@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-const  schema_url = Joi.object({
+const  schemaUrl = Joi.object({
     url : Joi.string().uri().required()
 })
-export default schema_url
+export default schemaUrl

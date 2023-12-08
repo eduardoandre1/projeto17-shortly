@@ -1,6 +1,6 @@
 import DB from "../database/postgresSQL.js"
 
-export default async function tokenvalidade(req,res,next){
+export default async function tokenValidade(req,res,next){
         const {authorization} = req.headers
         const select = `SELECT * FROM "tokens" WHERE "token" = $1`
         try{

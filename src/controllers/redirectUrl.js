@@ -1,5 +1,5 @@
 import DB from "../database/postgresSQL.js";
-export default async function redirect_url(req,res){
+export default async function redirectUrl(req,res){
     const short_url = req.params.shortUrl
     try{
         const url = await DB.query(`SELECT urls.original_url as url FROM urls WHERE urls.shorter_url = $1`,[short_url])

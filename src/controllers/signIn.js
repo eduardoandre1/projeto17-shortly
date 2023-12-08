@@ -1,9 +1,8 @@
 import bcrypt from "bcrypt";
 import DB from "../database/postgresSQL.js";
 import {v4 as uuid} from "uuid";
-import schema_sign_in from "../schemas/schema_sign_in.js";
 
-async function sign_in(req,res){
+async function signIn(req,res){
     const {email , password } = req.body
     try{
         const select = `SELECT * FROM "Users" WHERE email = $1`
@@ -11,8 +10,8 @@ async function sign_in(req,res){
         if(user.rowCount === 0){
             return res.status(401).send('email dont finded in server')
         }
-        const password_validate = bcrypt.compareSync(password,user.rows[0].password)
-        if(password_validate === false){
+        const passwordValidate = bcrypt.compareSync(password,user.rows[0].password)
+        if(passwordValidate === false){
             return res.status(401).send('wrong passwords')
         }
         const token = uuid()
@@ -22,4 +21,4 @@ async function sign_in(req,res){
 
     }catch(erro){return res.status(500).send(erro.message)}
 }
-export default sign_in
+export default signIn

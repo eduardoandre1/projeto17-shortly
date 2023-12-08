@@ -1,10 +1,10 @@
 import { Router } from "express";
-import tokenvalidade from "../../middlewares/token_validate.js";
-import my_profile from "../../controllers/my_profile_get.js";
-import rank from "../../controllers/rank_list.js";
+import tokenValidade from "../../middlewares/tokenValidate.js";
+import myProfile from "../../controllers/myProfileGet.js";
+import rank from "../../controllers/rankList.js";
 
 const user = Router()
-user.get("/users/me",tokenvalidade,my_profile)
+user.get("/users/me",tokenValidade,myProfile)
 user.get("/ranking",rank)
 
 export default user

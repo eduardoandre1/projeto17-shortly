@@ -1,12 +1,12 @@
 import { Router } from 'express'
-import input_validate from '../../middlewares/input_validate.js'
-import alredy_have_pg from '../../middlewares/already_have.js'
-import schema_sign_up from '../../schemas/schema_sign_up.js'
-import schema_sign_in from '../../schemas/schema_sign_in.js'
-import Sign_up from '../../controllers/sign_up.js'
-import sign_in from '../../controllers/sign_in.js'
+import inputValidate from '../../middlewares/inputValidate.js'
+import alredyHavePg from '../../middlewares/alreadyHave.js'
+import schemaSignUp from '../../schemas/schemaSignUp.js'
+import schemaSignIn from '../../schemas/schemaSignIn.js'
+import SignUp from '../../controllers/signUp.js'
+import signIn from '../../controllers/signIn.js'
 const login = Router()
-login.post("/signup",input_validate(schema_sign_up),alredy_have_pg('Users','email','email'),Sign_up)
-login.post("/signin",input_validate(schema_sign_in),sign_in)
+login.post("/signup",inputValidate(schemaSignUp),alredyHavePg('Users','email','email'),SignUp)
+login.post("/signin",inputValidate(schemaSignIn),signIn)
 
 export default login
