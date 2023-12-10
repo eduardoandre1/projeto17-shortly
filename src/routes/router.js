@@ -1,7 +1,7 @@
-import { Router } from "express";
-import login from "./login/login.router.js";
-import urls from "./urls/urls.router.js";
-import user from "./users_info/user.router.js";
+import { Router } from 'express'
+import login from './login/login.router.js'
+import urls from './urls/urls.router.js'
+import user from './users_info/user.router.js'
 
 const router = Router()
 router.use(login)

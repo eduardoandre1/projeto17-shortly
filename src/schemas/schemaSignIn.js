@@ -1,7 +1,7 @@
-import Joi from "joi";
+import Joi from 'joi'
 
-const  schemaSignIn = Joi.object({
-    email: Joi.string().email().required(),
-    password: Joi.string().required(),
+const schemaSignIn = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().required()
 })
 export default schemaSignIn

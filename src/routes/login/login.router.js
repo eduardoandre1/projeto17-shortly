@@ -6,7 +6,7 @@ import schemaSignIn from '../../schemas/schemaSignIn.js'
 import SignUp from '../../controllers/signUp.controller.js'
 import signIn from '../../controllers/signIn.controller.js'
 const login = Router()
-login.post("/signup",inputValidate(schemaSignUp),alredyHavePg('Users','email','email'),SignUp)
-login.post("/signin",inputValidate(schemaSignIn),signIn)
+login.post('/signup', inputValidate(schemaSignUp), alredyHavePg('Users', 'email', 'email'), SignUp)
+login.post('/signin', inputValidate(schemaSignIn), signIn)
 
 export default login
